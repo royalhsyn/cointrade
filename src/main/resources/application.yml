@@ -14,8 +14,10 @@ spring:
       ddl-auto: none
 
     show-sql: true
-#coin:
-#  url: https://api.binance.com/api/v3/ticker/price?symbol=
-#coins:
-#  prices:
-#    url: https://api.binance.com/api/v3/ticker/price
+coin:
+  url: https://api.binance.com/api/v3/ticker/price?symbol=
+
+coins:
+  prices:
+    url: https://api.binance.com/api/v3/ticker/price
+
