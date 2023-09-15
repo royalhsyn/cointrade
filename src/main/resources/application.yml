@@ -1,5 +1,5 @@
 server:
-  port: 8082
+  port: 8081
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
@@ -11,7 +11,7 @@ spring:
     change-log: classpath:/db/changelog-master.yml
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
 
     show-sql: true
 coin:
