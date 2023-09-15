@@ -1,0 +1,11 @@
+version: '3'
+services:
+  airport-db:
+    image: library/postgres:latest
+    ports:
+      - "5432:5432"
+    container_name: trades-db-postgres
+    environment:
+      - POSTGRES_DB= trades-db
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=admin

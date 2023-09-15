@@ -1,0 +1,21 @@
+server:
+  port: 8082
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    driver-class-name: org.postgresql.Driver
+    username: admin
+    password: admin
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog-master.yml
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+    show-sql: true
+#coin:
+#  url: https://api.binance.com/api/v3/ticker/price?symbol=
+#coins:
+#  prices:
+#    url: https://api.binance.com/api/v3/ticker/price

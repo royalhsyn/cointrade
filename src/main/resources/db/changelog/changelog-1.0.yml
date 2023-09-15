@@ -1,0 +1,143 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-coins
+      author: Royal
+      changes:
+        - createTable:
+            tableName: coins
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: coinname
+                  type: VARCHAR(255)
+
+              - column:
+                  name: price
+                  type: double precision
+
+              - column:
+                  name: updatedtime
+                  type: date
+
+              - column:
+                  name: responselocaltime
+                  type: date
+
+  - changeSet:
+      id: create-table-users
+      author: Royal
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: firstname
+                  type: VARCHAR(255)
+
+              - column:
+                  name: lastname
+                  type: VARCHAR(255)
+
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: password
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: birthdate
+                  type: date
+
+              - column:
+                  name: balance
+                  type: double precision
+
+
+  - changeSet:
+      id: create-table-wallets
+      author: Royal
+      changes:
+        - createTable:
+            tableName: wallets
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: user_id
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: wallets_users_id_fk
+                    references: users(id)
+
+
+
+  - changeSet:
+      id: create-table-transactions
+      author: Royal
+      changes:
+        - createTable:
+            tableName: transactions
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: quantity
+                  type: double precision
+
+              - column:
+                  name: total_price
+                  type: double precision
+
+              - column:
+                  name: user_id
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: transactions_users_id_fk
+                    references: users(id)
+
+
+              - column:
+                  name: coin_id
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: transactions_coins_id_fk
+                    references: coins(id)
+
+
+              - column:
+                  name: wallet_id
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: transactions_wallets_id_fk
+                    references: wallets(id)
