@@ -1,5 +1,9 @@
 server:
   port: 8081
+  error:
+    whitelabel:
+      enabled: false
+
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
@@ -14,6 +18,26 @@ spring:
       ddl-auto: update
 
     show-sql: true
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: royalhuseynov225@gmail.com
+    password: 'eotfywkmxrvtbhrj'
+    protocol: smtp
+    tls: true
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+
+
+
+app:
+  registration:
+    base-url: 'http://127.0.0.1:8081'
+  jwt:
+    secret: blah
+
 coin:
   url: https://api.binance.com/api/v3/ticker/price?symbol=
 

@@ -1,13 +1,29 @@
 package com.example.cointrade.dto;
 
-import java.util.Date;
+import lombok.*;
 
-public record UserDto(
-        String firstName,
-        String lastName,
-        Date birthdate,
-        String email,
-        Double cash,
-        Long walletId
-) {
+import java.util.Date;
+import java.util.List;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+public class UserDto {
+
+    private Long id;
+
+    private String firstName;
+
+    private String lastName;
+
+    private Date birthdate;
+
+    private String email;
+
+    private Double cash;
+
+    private List<Long> walletId;
+
+    private List<Long> transactionId;
 }
