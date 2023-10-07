@@ -1,10 +1,12 @@
 package com.example.cointrade.service;
 
 import com.example.cointrade.dto.UserDto;
+import com.example.cointrade.entity.User;
 import com.example.cointrade.exception.NotFoundException;
 import com.example.cointrade.map.UserMap;
 import com.example.cointrade.repository.UserRepo;
 import jakarta.transaction.Transactional;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,7 +16,6 @@ import org.springframework.stereotype.Service;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -29,12 +30,19 @@ public class UserService implements UserDetailsService {
         this.map = map;
     }
 
-    public List<UserDto> findAll(){
-       return userRepo.findAll()
-                .stream()
-                .map(map :: toDto)
-                .collect(Collectors.toList());
+    public List<UserDto> list (Specification<User> spec){
+        return userRepo.findAll(spec)
+                .stream().map(map::toDto)
+                .toList();
     }
+
+
+//    public List<UserDto> findAll(){
+//       return userRepo.findAll()
+//                .stream()
+//                .map(map :: toDto)
+//                .collect(Collectors.toList());
+//    }
 
     public UserDto findById(Long id){
         return userRepo
